@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <title>Responsive Modular Scale</title>
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+</head>
+
+<body>
+  
+<header class="header">
+  <h1 class="page-title">Responsive Modular Scale</h1>
+  <p class="page-title-sub">Make your typographic scale responsive.</p>
+</header>
+
+<section class="main" role="main">
+
+  <section>
+    <h2>Get it</h2>
+
+    <p>Responsive Modular Scale is a Compass extension. Just install the gem...</p>
+
+    <code class="code-block">$ gem install responsive-modular-scale</code>
+
+    <p>...add it to your project's config file...</p>
+
+    <code class="code-block">require 'modular-scale'
+  require 'responsive-modular-scale'</code>
+
+    <p>...and import it into your stylesheet.</p>
+
+    <code class="code-block">@import 'modular-scale';
+  @import 'responsive-modular-scale';</code>
+  </section>
+
+  <section>
+    <h2>Use it</h2>
+
+    <h3>Setting the scales</h3>
+
+    <p>To set up your scales, you'll need a base pixel value and any number of breakpoint/ratio pairs. The generated CSS uses mobile-first breakpoints: by passing in a ratio without a pixel value, it's assumed to be for the smallest screens, and any ratios passed in with pixel values will generate <code>min-width</code> media queries.</p>
+
+    <p>The <code>set-scales()</code> function allows you to set your base pixel value(s), which don't change, and your ratios, which change at the breakpoints you specify. Here's a basic example: use a 1.333:1 (a perfect fourth) scale by default, and widen to a 1.5:1 (a perfect fifth) scale on medium-sized screens and up.</p>
+
+    <code class="code-block">@include set-scales(16px, fourth(), 768px fifth());</code>
+
+    <p>If you're more into using two main breakpoints instead of one, you could slip an augmented fourth in the middle.</p>
+
+    <code class="code-block">@include set-scales(16px, fourth(), 640px augmented-fourth(), 1024px fifth());</code>
+
+    <p>These examples use the <code>modular-scale</code> gem's predefined ratios, of which there are many. However, you can pass in any old ratio you want, in the form of an integer (1.5) or a division problem (3 / 2).</p>
+  </section>
+
+</section>
+
+</body>
+
+</html>
