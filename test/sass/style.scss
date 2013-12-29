@@ -1,0 +1,34 @@
+@import 'compass';
+@import 'responsive-modular-scale';
+
+body {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #eee;
+  color: #000;
+  font-family: sans-serif;
+}
+
+@include set-scales(16px 100px, fourth(), 600px augmented-fourth(), 800px fifth());
+
+.scale-0 {
+  @include mod(0);
+}
+.scale-1 {
+  @include mod(1);
+}
+.scale-2 {
+  @include mod(2);
+}
+.scale-3 {
+  @include mod(3);
+}
+.scale-4 {
+  @include mod(4);
+}
+.scale-5 {
+  @include mod(5);
+}
+.scale-6 {
+  @include mod(6);
+}

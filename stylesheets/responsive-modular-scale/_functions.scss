@@ -1,0 +1,65 @@
+$rms-base: 16px 100px;
+$rms-intervals: (0px fourth()), (768px fifth());
+
+/*
+  Sets user-defined values for the modular scale, which replace the default values defined above. The function accepts any number of arguments which should take the form:
+
+  $base, $interval1, $interval2, ...
+
+  @param  (number or list) $base: one or more pixel values to use as the base of the modular scale. These don't change between breakpoints.
+  @param  (list) $interval: A list containing a pixel value (representing a min-width breakpoint) followed by an interval (an integer or one of modular-scale's predefined ratios).
+*/
+@mixin set-scales($args...) {
+  // If no arguments were given
+  @if length($args) == 0 {
+    @warn 'No base values or intervals were set, so the default values will be used.';
+  }
+  // If at least one argument was given
+  @else {
+    // The first argument should be one or more pixel values
+    $rms-base: nth($args, 1);
+
+    // If more than one argument was given
+    @if length($args) > 1 {
+      // Remove the default breakpoints and intervals
+      $rms-intervals: ();
+
+      @for $i from 2 through length($args) {
+        // If a list item only has one value, assume it's an interval and set the breakpoint to 0px
+        @if length(nth($args, $i)) == 1 {
+          $rms-intervals: append($rms-intervals, 0px nth($args, $i));
+        }
+        // Otherwise copy the list as-is
+        @else {
+          $rms-intervals: append($rms-intervals, nth($args, $i));
+        }
+      }
+    }
+    // If only one argument was given
+    @else {
+      @warn 'No intervals were set, so the default values will be used.';
+    }
+  }
+}
+
+/*
+  Iterates through the list of breakpoints and intervals, outputting multiple font-size declarations for each breakpoint.
+
+  @param  (number) $n: position on the modular scale to use.
+*/
+@mixin mod($n: 0) {
+  @each $interval in $rms-intervals {
+    $scale-breakpoint: nth($interval, 1);
+    $scale-interval:   nth($interval, 2);
+    $output: ms($n, $rms-base, $scale-interval);
+
+    @if $scale-breakpoint == 0px {
+      font-size: $output;
+    }
+    @else {
+      @media screen and (min-width: $scale-breakpoint) {
+        font-size: $output;
+      }
+    }
+  }
+}
