@@ -43,6 +43,28 @@ $rms-intervals: (0px fourth()), (768px fifth());
 }
 
 /*
+  Outputs the values of each scale to the console using modular-scale's modular-scale-list() mixin. The range of values to be returned can be specified; otherwise, 20 values starting from the base value will be returned.
+
+  @param  (number) $start: index on the scale to start at (0 is the base value).
+  @param  (number) $end: index on the scale to end at.
+*/
+@mixin list-scales($start: 0, $end: 20) {
+  @each $scale in $rms-intervals {
+    $scale-breakpoint: nth($scale, 1);
+    $scale-interval:   nth($scale, 2);
+
+    @if $scale-breakpoint == 0px {
+      @debug 'Default --';
+    }
+    @else {
+      @debug 'Min-width: #{$scale-breakpoint} --';
+    }
+
+    @include modular-scale-list($start, $end, $rms-base, $scale-interval);
+  }
+}
+
+/*
   Iterates through the list of breakpoints and intervals, outputting multiple font-size declarations for each breakpoint.
 
   @param  (number) $n: position on the modular scale to use.

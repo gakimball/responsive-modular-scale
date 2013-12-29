@@ -10,6 +10,7 @@ body {
 }
 
 @include set-scales(16px 100px, fourth(), 640px augmented-fourth(), 1024px fifth());
+@include list-scales(0, 5);
 
 .scale-0 {
   @include rms(0);
