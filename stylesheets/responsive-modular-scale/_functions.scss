@@ -47,7 +47,7 @@ $rms-intervals: (0px fourth()), (768px fifth());
 
   @param  (number) $n: position on the modular scale to use.
 */
-@mixin mod($n: 0) {
+@mixin rms($n: 0) {
   @each $interval in $rms-intervals {
     $scale-breakpoint: nth($interval, 1);
     $scale-interval:   nth($interval, 2);

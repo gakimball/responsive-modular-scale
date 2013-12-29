@@ -12,23 +12,23 @@ body {
 @include set-scales(16px 100px, fourth(), 640px augmented-fourth(), 1040px fifth());
 
 .scale-0 {
-  @include mod(0);
+  @include rms(0);
 }
 .scale-1 {
-  @include mod(1);
+  @include rms(1);
 }
 .scale-2 {
-  @include mod(2);
+  @include rms(2);
 }
 .scale-3 {
-  @include mod(3);
+  @include rms(3);
 }
 .scale-4 {
-  @include mod(4);
+  @include rms(4);
 }
 .scale-5 {
-  @include mod(5);
+  @include rms(5);
 }
 .scale-6 {
-  @include mod(6);
+  @include rms(6);
 }
