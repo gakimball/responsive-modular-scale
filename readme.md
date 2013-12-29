@@ -49,6 +49,6 @@ I'm no typography expert, so if you have any suggestions or comments, let me kno
 
 - Better support for multiple ratios: they'll only work if passed in as `1000px (fourth() fifth())`
 - Switch to em-based font sizes and breakpoints
--- Add the ability to correct an em value if the base font size has changed
+    - Add the ability to correct an em value if the base font size has changed
 - Allow the value of `$n` to be changed at breakpoints, to allow for finer control over font sizes
--- Expample: `@include set-scales(16px, 1.5, 768px 2); h1 { @include rms(5, 6); }
+    - Expample: `@include set-scales(16px, 1.5, 768px 2); h1 { @include rms(5, 6); }`
