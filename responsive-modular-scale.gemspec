@@ -8,9 +8,12 @@ Gem::Specification.new do |s|
   s.summary     = "Responsive enhancements for the Sass modular scale."
   s.authors     = ["Geoff Kimball"]
   s.email       = 'gakimball@bsu.edu'
-  s.files       = ["lib/responsive-modular-scale.rb"]
   s.homepage    =
     'http://github.com/gakimball/responsive-modular-scale'
-  s.license       = 'MIT'
-  s.add_dependency("modular-scale",   [">= 1.0.6"])
+  s.license     = 'MIT'
+
+  s.files = ["lib/responsive-modular-scale.rb", "readme.md", "license.md"]
+  s.files += Dir.glob("stylesheets/**/*.*")
+
+  s.add_dependency("modular-scale", [">= 1.0.6"])
 end
