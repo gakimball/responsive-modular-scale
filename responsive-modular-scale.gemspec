@@ -1,3 +1,5 @@
+require './lib/responsive-modular-scale'
+
 Gem::Specification.new do |s|
   s.name        = 'responsive-modular-scale'
   s.version     = ResponsiveModularScale::VERSION
