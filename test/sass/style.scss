@@ -9,7 +9,7 @@ body {
   font-family: sans-serif;
 }
 
-@include set-scales(16px 100px, fourth(), 600px augmented-fourth(), 800px fifth());
+@include set-scales(16px 100px, fourth(), 640px augmented-fourth(), 1040px fifth());
 
 .scale-0 {
   @include mod(0);
