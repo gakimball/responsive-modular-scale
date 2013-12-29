@@ -1,0 +1,138 @@
+@import 'normalize';
+@import 'compass/css3';
+@import 'modular-scale';
+@import 'responsive-modular-scale';
+
+@mixin media($n) {
+  @media screen and (min-width: $n) {
+    @content;
+  }
+}
+
+$medium: 550px;
+$large: 800px;
+
+html {
+  border-top: 6px solid #333;
+}
+body {
+  background: #eee;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+@include set-scales(16px 90px, major-third(), $medium fourth(), $large fifth());
+
+h1, h2, h3, p, ul, ol, li, img {
+  margin: 0 0 1rem 0;
+}
+
+h1 {
+  @include rms(9);
+}
+h2 {
+  @include rms(5);
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid #333;
+  margin-bottom: 1.5rem;
+}
+h3 {
+  @include rms(3);
+}
+
+p, li, code {
+  line-height: fourth();
+
+  @include media($medium) {
+    line-height: augmented-fourth();
+  }
+  @include media($large) {
+    line-height: fifth();
+  }
+}
+
+a {
+  color: #a20800;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+pre {
+  margin: 0;
+}
+code {
+  border: 1px solid #666;
+  background: #ddd;
+}
+.code-block {
+  display: block;
+  padding: 0.75em;
+  margin-bottom: 1em;
+}
+
+.main > section {
+  margin-bottom: 2em;
+}
+
+/*
+  Page styles
+*/
+
+.header {
+  margin-bottom: 2em;
+  padding: 1em 0;
+  border-bottom: 4px solid #333;
+}
+  .page-title {
+    line-height: 1.1;
+    margin-bottom: 0;
+  }
+  .page-title-sub {
+    @include rms(4);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    font-weight: 100;
+    color: #000;
+  }
+
+.demo {
+  .explanation {
+    @include rms(2);
+    font-weight: 300;
+  }
+}
+
+.fork-button {
+  $diameter: 4.5em;
+  @include rms(5);
+  @include rotateZ(15deg);
+
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: $diameter;
+  height: $diameter;
+  
+  color: white;
+  background: black;
+  text-align: center;
+  line-height: $diameter;
+  border-radius: 1000px;
+  
+  display: none;
+
+  &:hover {
+    text-decoration: none;
+    @include transform(scale(1.1) rotate(15deg));
+  }
+
+  @include media(660px) {
+    display: block;
+  }
+}

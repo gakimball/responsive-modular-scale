@@ -10,13 +10,39 @@
 </head>
 
 <body>
+
+<a href="http://github.com/gakimball/responsive-modular-scale" class="fork-button">Fork it</a>
   
 <header class="header">
-  <h1 class="page-title">Responsive Modular Scale</h1>
-  <p class="page-title-sub">Make your typographic scale responsive.</p>
+  <h1 class="page-title">Responsive <br> Modular Scale</h1>
+  <p class="page-title-sub">Responsive typography made easy.</p>
 </header>
 
 <section class="main" role="main">
+
+  <section class="demo">
+    <p class="explanation">This page's typographic scale shifts on screens <strong>wider than 550px</strong> and <strong>wider than 800px</strong>. Resize your viewport (if you can) to see it in action.</p>
+  </section>
+
+  <section>
+    <h2>What's the deal?</h2>
+
+    <section>
+      <h3>Modular scale typography</h3>
+
+      <p>This is a responsive extension of the Sass team's <a href="https://github.com/Team-Sass/modular-scale">modular-scale</a> add-on. A modular typographic scale gives you a set of predefined values to use in your design, based on one or more base sizes and one or more intervals. You can learn more about modular scale typography on <a href="http://www.alistapart.com/articles/more-meaningful-typography/">A List Apart</a>, and quickly make a modular scale using <a href="http://twitter.com/nicewebtype">Tim Brown</a>'s <a href="http://modularscale.com/">modular scale tool</a>.</p>
+    </section>
+
+    <section>
+      <h3>Making it responsive</h3>
+
+      <p>Modular scales are great, but type has a tendency to get a little too big on smaller screens. What responsive-modular-scale allows you to do is quickly create multiple scales for different screen sizes. By changing the intervals used, but not the base sizes, we can compress the scale for smaller screens and expand it out for bigger screens.</p>
+
+      <p>For example, a default scale could use a 1.333:1 ratio (a perfect fourth), and on screens 768px (everyone's favorite breakpoint) and up, the scale changes to use a 1.5:1 ratio (a perfect fifth) instead. Our base value stays the same, but the gaps between values in the scale widen, increasing the size of the type to a more appropriate size.</p>
+
+      <p>Is this the best approach to responsive typography? Maybe, maybe not. I'm not an expert in type by any stretch of the imagination. I've looked around at various responsive type solutions and I haven't seen anything quite like this, so I'm giving it a try.</p>
+    </section>
+  </section>
 
   <section>
     <h2>Get it</h2>
@@ -27,31 +53,66 @@
 
     <p>...add it to your project's config file...</p>
 
-    <code class="code-block">require 'modular-scale'
-  require 'responsive-modular-scale'</code>
+    <code class="code-block"><pre>require 'modular-scale'
+require 'responsive-modular-scale'</pre></code>
 
     <p>...and import it into your stylesheet.</p>
 
-    <code class="code-block">@import 'modular-scale';
-  @import 'responsive-modular-scale';</code>
+    <code class="code-block"><pre>@import 'modular-scale';
+@import 'responsive-modular-scale';</pre></code>
   </section>
 
   <section>
     <h2>Use it</h2>
 
-    <h3>Setting the scales</h3>
+    <section>
+      <h3>Setting the scales</h3>
 
-    <p>To set up your scales, you'll need a base pixel value and any number of breakpoint/ratio pairs. The generated CSS uses mobile-first breakpoints: by passing in a ratio without a pixel value, it's assumed to be for the smallest screens, and any ratios passed in with pixel values will generate <code>min-width</code> media queries.</p>
+      <p>To set up your scales, you'll need a base pixel value and any number of breakpoint/ratio pairs. The generated CSS uses mobile-first breakpoints: by passing in a ratio without a pixel value, it's assumed to be for the smallest screens, and any ratios passed in with pixel values will generate <code>min-width</code> media queries.</p>
 
-    <p>The <code>set-scales()</code> function allows you to set your base pixel value(s), which don't change, and your ratios, which change at the breakpoints you specify. Here's a basic example: use a 1.333:1 (a perfect fourth) scale by default, and widen to a 1.5:1 (a perfect fifth) scale on medium-sized screens and up.</p>
+      <p>The <code>set-scales()</code> mixin allows you to set your base pixel value(s), which don't change, and your ratios, which change at the breakpoints you specify. Here's a basic example: use a 1.333:1 (a perfect fourth) scale by default, and widen to a 1.5:1 (a perfect fifth) scale on medium-sized screens and up.</p>
 
-    <code class="code-block">@include set-scales(16px, fourth(), 768px fifth());</code>
+      <code class="code-block">@include set-scales(16px, fourth(), 768px fifth());</code>
 
-    <p>If you're more into using two main breakpoints instead of one, you could slip an augmented fourth in the middle.</p>
+      <p>If you're more into using two main breakpoints instead of one, you could slip an augmented fourth in the middle.</p>
 
-    <code class="code-block">@include set-scales(16px, fourth(), 640px augmented-fourth(), 1024px fifth());</code>
+      <code class="code-block">@include set-scales(16px, fourth(), 640px augmented-fourth(), 1024px fifth());</code>
 
-    <p>These examples use the <code>modular-scale</code> gem's predefined ratios, of which there are many. However, you can pass in any old ratio you want, in the form of an integer (1.5) or a division problem (3 / 2).</p>
+      <p>These examples use the <code>modular-scale</code> gem's predefined ratios, of which there are many. However, you can pass in any old ratio you want, in the form of an integer (1.5) or a division problem (3 / 2).</p>
+    </section>
+
+    <section>
+      <h3>Setting the type</h3>
+
+      <p>Setting a size works the same as it does with the standard modular scale gem: 0 is your base value, positive numbers move up the scale, and negative numbers move down. The <code>rms()</code> mixin will add one <code>font-size</code> property at each breakpoint you specified earlier.</p>
+
+      <p>Using a 16px base and two basic scales:</p>
+
+      <code class="code-block">@include set-scales(16px, fourth(), 768px fifth());</code>
+
+      <p>And setting your font size like this:</p>
+
+      <code class="code-block"><pre>h1 {
+  @include rms(4)
+}</pre></code>
+
+      <p>Your CSS will look like this:</p>
+
+      <code class="code-block"><pre>h1 {
+  font-size: 50px; // Default value using the smallest scale
+}
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 81px; // Larger value using a widened scale
+  }
+}</pre></code>
+    </section>
+  </section>
+
+  <section>
+    <h2>Who made it</h2>
+
+    <p>This gem was written by <a href="http://geoffkimball.com">Geoff Kimball</a>. Of course, most all of the heavy lifting was done by the Sass team with their <a href="http://github.com/team-sass/modular-scale">modular-scale</a> gem.</p>
   </section>
 
 </section>
