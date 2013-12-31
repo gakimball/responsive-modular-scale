@@ -1,5 +1,6 @@
 $rms-base: 16px;
 $rms-intervals: (0px fourth()), (768px fifth());
+$rms-usepixels: false;
 
 /*
   Sets user-defined values for the modular scale, which replace the default values defined above. The function accepts any number of arguments which should take the form:
@@ -65,6 +66,24 @@ $rms-intervals: (0px fourth()), (768px fifth());
 }
 
 /*
+  Use pixel values for breakpoints and font sizes.
+
+  @param  (boolean) $true: if true, the system will use pixels; otherwise, ems.
+*/
+@mixin use-pixels($true: true) {
+  $rms-usepixels: $true;
+}
+
+/*
+  Change the base font size from the default of 16px, for use by the to-em() function.
+
+  @param  (number) $number: pixel value to change to.
+*/
+@mixin set-base($number) {
+  $rms-basefont: $number;
+}
+
+/*
   Iterates through the list of breakpoints and intervals, outputting multiple font-size declarations for each breakpoint.
 
   @param  (number) $n: position on the modular scale to use.
@@ -75,7 +94,13 @@ $rms-intervals: (0px fourth()), (768px fifth());
     $scale-interval:   nth($interval, 2);
     $output: ms($n, $rms-base, $scale-interval);
 
-    @if $scale-breakpoint == 0px {
+
+    @if $rms-usepixels == false {
+      $scale-breakpoint: to-em($scale-breakpoint);
+      $output:           to-em($output);
+    }
+
+    @if strip-units($scale-breakpoint) == 0 {
       font-size: $output;
     }
     @else {

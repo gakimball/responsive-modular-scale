@@ -1,1 +1,27 @@
-// emCalc will go here, and perhaps also a function to adjust an em value using a different base value.
+$rms-basefont: 16px;
+
+/*
+  Take a pixel value and convert it to an em value, using a base font size for reference.
+
+  @param  (number) $px: pixel value to convert.
+  @param  (number) $base: base font size to use in calculation.
+  @return (number) calculated em value
+*/
+@function to-em($px, $base: $rms-basefont) {
+  // If a non-pixel value was passed in, just hand it back
+  // Should probably tweak this behavior
+  @if unit($px) != 'px' {
+    @return $px;
+  }
+  @return ($px / $base) * 1em;
+}
+
+/*
+  Strip the units off a number.
+
+  @param  (number) $number: number with unit to convert.
+  @return (number) Input number without units.
+*/
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}

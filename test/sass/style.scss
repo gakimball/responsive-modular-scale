@@ -7,11 +7,19 @@ body {
   background: #eee;
   color: #000;
   font-family: sans-serif;
+  font-size: 14px;
 }
 
+// Basic scale function
 @include set-scales(16px 100px, fourth(), 640px augmented-fourth(), 1024px fifth());
+
+// Scale adjustment
+@include set-base(14px);
+
+// Debug function
 @include list-scales(0, 5);
 
+// Applying the scales
 .scale-0 {
   @include rms(0);
 }
