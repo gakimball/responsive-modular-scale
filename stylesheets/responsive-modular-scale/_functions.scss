@@ -88,7 +88,7 @@ $rms-usepixels: false;
 
   @param  (number) $n: position on the modular scale to use.
 */
-@mixin rms($n: 0) {
+@mixin rms($n: 0, $base: false) {
   // Output one font-size defenition for each defined breakpoint
   @each $interval in $rms-intervals {
     // Pull the breakpoint and interval from the list and generate the final font size
@@ -100,6 +100,17 @@ $rms-usepixels: false;
     @if $rms-usepixels == false {
       $scale-breakpoint: to-em($scale-breakpoint);
       $output:           to-em($output);
+
+      // If a different base has been passed in, adjust the output font size to compensate
+      @if $base != false {
+        // The base value is the em value derived from the px value at position $base on the scale
+        $base-value: to-em(ms($base, $rms-base, $scale-interval));
+        @debug 'Font size: #{$output}';
+        @debug 'Base: #{$base-value}';
+        // The adjusted value is the original value divided by the base value
+        $output: $output / $base-value * 1em;
+        @debug 'Adjusted: #{$output}';
+      }
     }
 
     // Don't insert a 0px/em media query, just output the value
