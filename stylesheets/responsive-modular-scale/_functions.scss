@@ -105,11 +105,8 @@ $rms-usepixels: false;
       @if $base != false {
         // The base value is the em value derived from the px value at position $base on the scale
         $base-value: to-em(ms($base, $rms-base, $scale-interval));
-        @debug 'Font size: #{$output}';
-        @debug 'Base: #{$base-value}';
         // The adjusted value is the original value divided by the base value
         $output: $output / $base-value * 1em;
-        @debug 'Adjusted: #{$output}';
       }
     }
 
