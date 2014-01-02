@@ -11,10 +11,16 @@ body {
 }
 
 // Basic scale function
-@include set-scales(16px 100px, fourth(), 640px augmented-fourth(), 1024px fifth());
+@include set-scales(16px, fourth(), 640px augmented-fourth(), 1024px fourth());
 
 // Debug function
 @include list-scales(0, 5);
+
+h1 {
+  @include rms(4);
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #000;
+}
 
 // Applying the scales
 .scale-0 {
