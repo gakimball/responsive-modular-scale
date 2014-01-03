@@ -77,6 +77,7 @@ If `rms()` is called on a container element, calls made on elements inside that 
     @include rms(1); // 1.25em * 1.25em = 1.56em, or 25px
   }
 }
+```
 
 To correct this behavior, `rms()` includes an optional second parameter which will adjust the base font size used in em calculation. The value of the second parameter is the position on the modular scale that should be used as a base.
 
@@ -90,6 +91,7 @@ To correct this behavior, `rms()` includes an optional second parameter which wi
     @include rms(1, 1);
   }
 }
+```
 
 Currently the mixin will only correct one level deep.
 
