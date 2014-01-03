@@ -36,6 +36,7 @@ The base values should always be pixel values, but the breakpoints can be pixel-
 ```scss
 // You can call this before or after set-scales()
 @include use-pixels;
+```
 
 ### Using the scales
 
