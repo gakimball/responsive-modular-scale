@@ -11,13 +11,13 @@ body {
 }
 
 // Basic scale function
-@include set-scales(16px, fourth(), 640px augmented-fourth(), 1024px fourth());
+@include rms-set-scales(16px, $fourth, 640px $augmented-fourth, 1024px $fifth);
 
 // Debug function
-@include list-scales(0, 5);
+@include rms-list-scales(0, 5);
 
 h1 {
-  @include rms(4);
+  @include rms(3);
   padding-bottom: 0.5em;
   border-bottom: 1px solid #000;
 }
@@ -41,14 +41,23 @@ h1 {
 .scale-5 {
   @include rms(5);
 }
-.scale-6 {
-  @include rms(6);
-}
 
 .adjscale {
   @include rms(1);
 
   p {
     @include rms(0, 1);
+  }
+}
+.adjscale-2 {
+  p {
+    @include rms(2);
+  }
+  .inner {
+    @include rms(2);
+
+    p {
+      @include rms(2, 2);
+    }
   }
 }

@@ -1,5 +1,5 @@
 $rms-base: 16px;
-$rms-intervals: (0px fourth()), (768px fifth());
+$rms-intervals: (0px $fourth), (768px $fifth);
 $rms-usepixels: false;
 
 /*
@@ -10,7 +10,7 @@ $rms-usepixels: false;
   @param  (number or list) $base: one or more pixel values to use as the base of the modular scale. These don't change between breakpoints.
   @param  (list) $interval: A list containing a pixel value (representing a min-width breakpoint) followed by an interval (an integer or one of modular-scale's predefined ratios).
 */
-@mixin set-scales($args...) {
+@mixin rms-set-scales($args...) {
   // If no arguments were given
   @if length($args) == 0 {
     @warn 'No base values or intervals were set, so the default values will be used.';
@@ -49,7 +49,7 @@ $rms-usepixels: false;
   @param  (number) $start: index on the scale to start at (0 is the base value).
   @param  (number) $end: index on the scale to end at.
 */
-@mixin list-scales($start: 0, $end: 20) {
+@mixin rms-list-scales($start: 0, $end: 20) {
   @each $scale in $rms-intervals {
     $scale-breakpoint: nth($scale, 1);
     $scale-interval:   nth($scale, 2);
@@ -61,7 +61,7 @@ $rms-usepixels: false;
       @debug 'Min-width: #{$scale-breakpoint} --';
     }
 
-    @include modular-scale-list($start, $end, $rms-base, $scale-interval);
+    @debug ms-list($start, $end, $rms-base, $scale-interval);
   }
 }
 
@@ -70,7 +70,7 @@ $rms-usepixels: false;
 
   @param  (boolean) $true: if true, the system will use pixels; otherwise, ems.
 */
-@mixin use-pixels($true: true) {
+@mixin rms-use-pixels($true: true) {
   $rms-usepixels: $true;
 }
 
@@ -79,7 +79,7 @@ $rms-usepixels: false;
 
   @param  (number) $number: pixel value to change to.
 */
-@mixin set-base($number) {
+@mixin rms-set-base($number) {
   $rms-basefont: $number;
 }
 
