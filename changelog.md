@@ -1,6 +1,17 @@
 # Changelog
 
-## 0.1.0 (January 2, 2013)
+## 0.2.0 (February 13, 2014)
+
+This is a mostly-breaking version as the helper functions were renamed to avoid any possible collision with other libraries.
+
+- Compatability with modular-scale 2.0.4
+- Helper functions renamed
+    - `set-scales()` is `rms-list-scales()`
+    - `list-scales()` is `rms-list-scales()`
+    - `use-pixels()` is `rms-use-pixels()`
+    - `set-base()` is `rms-set-base()`
+
+## 0.1.0 (January 2, 2014)
 
 - Use em-based breakpoints and font sizes by default
     - Option to switch back to pixel-based values added (`use-pixels()`)

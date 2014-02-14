@@ -22,20 +22,20 @@ To create a set of scales we need one or more base values and one or more interv
 
 ```scss
 // Change just the base values, keep the default scales
-@include set-scales(16px 100px);
+@include rms-set-scales(16px 100px);
 
 // Use a fourth by default, and a fifth for larger screens
-@include set-scales(16px, fourth(), 768px fifth());
+@include rms-set-scales(16px, $fourth, 768px $fifth;
 
 // Use a fourth by default, an augmented fourth for medium screens, and a fifth for large screens
-@include set-scales(16px, fourth(), 640px augmented-fourth(), 1024px fifth());
+@include rms-set-scales(16px, $fourth, 640px $augmented-fourth, 1024px $fifth);
 ```
 
 The base values should always be pixel values, but the breakpoints can be pixel- or em-based. By default, responsive-modular-scale will output all breakpoints and font-size values as em values, but you can change to pixels if you'd like.
 
 ```scss
 // You can call this before or after set-scales()
-@include use-pixels;
+@include rms-use-pixels;
 ```
 
 ### Using the scales
@@ -61,7 +61,7 @@ Each call to `rms()` will generate one font-size declaration for each breakpoint
 If you're outputting em-based values (the default) and want to adjust your base font size from the usual 16px, you'll need to let responsive-modular-scale know.
 
 ```scss
-@include set-base(18px);
+@include rms-set-base(18px);
 ```
 
 This mixin doesn't output any CSS, it just changes the way ems are calculated internally.
@@ -69,7 +69,7 @@ This mixin doesn't output any CSS, it just changes the way ems are calculated in
 If `rms()` is called on a container element, calls made on elements inside that container will not be the right size, due to the compounding nature of ems.
 
 ```scss
-@include set-scales(16px, third(), 768px fourth());
+@include rms-set-scales(16px, $third, 768px $fourth);
 
 .container {
   @include rms(1); // 20px, or 1.25em
@@ -88,7 +88,7 @@ To correct this behavior, `rms()` includes an optional second parameter which wi
 
   .child {
     // By passing in a different base the resulting em value will be adjusted down
-    // The font sizes for .container and .child will visually be the same, despite having different em values
+    // The font sizes for .container and .child will visually appear the same, despite having different em values
     @include rms(1, 1);
   }
 }
@@ -100,7 +100,11 @@ Currently the mixin will only correct one level deep.
 
 I'm no typography expert, so if you have any suggestions or comments, let me know! In the mean time here are things that need to be added or fixed:
 
-- Better support for multiple ratios in a single scale: they'll only work if passed in as `1000px (fourth() fifth())`
+- Better support for multiple ratios in a single scale: they'll only work if passed in as `1000px ($fourth $fifth)`
 - Allow the value of `$n` to be changed at breakpoints, to allow for finer control over font sizes
     - Expample: `@include set-scales(16px, 1.5, 768px 2); h1 { @include rms(5, 6); }`
 - Ability to correct em values at more than one level deep
+
+## Who made it
+
+This whole shebang was put together by [Geoff Kimball](http://geoffkimball.com), but most of the heavy lifting is done by the Sass team's excellent [modular-scale](https://github.com/Team-Sass/modular-scale) library.
