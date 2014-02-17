@@ -6,23 +6,56 @@
   <meta charset="utf-8">
   <title>Responsive Modular Scale</title>
   <link rel="stylesheet" href="stylesheets/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Cookie:400|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
-
-<a href="http://github.com/gakimball/responsive-modular-scale" class="fork-button">Fork it</a>
   
 <header class="header">
   <h1 class="page-title">Responsive <br> Modular Scale</h1>
   <p class="page-title-sub">Responsive typography made easy.</p>
+  <div class="gem-install"><b>$</b> gem install responsive-modular-scale</div>
+  <a href="https://github.com/gakimball/responsive-modular-scale"><img src="img/fork.svg" alt="Fork me on Github" class="fork"></a>
 </header>
 
-<section class="main" role="main">
+<hr class="divider">
 
-  <section class="demo">
-    <p class="explanation">This page's typographic scale shifts on screens <strong>wider than 550px</strong> and <strong>wider than 800px</strong>. Resize your viewport (if you can) to see it in action.</p>
-  </section>
+<section class="demo">
+  <div class="demo-scale-small">
+    <p>You're seeing a <strong>1.25:1</strong> (major third) scale with an 18px base:</p>
+    <ul class="demo-scale-list">
+      <li class="scale-0">18</li>
+      <li class="scale-1">22.5</li>
+      <li class="scale-2">28.1</li>
+      <li class="scale-3">35.2</li>
+      <li class="scale-4">43.9</li>
+    </ul>
+  </div>
+  <div class="demo-scale-medium">
+    <p>You're seeing a <strong>1.33:1</strong> (perfect fourth) scale with an 18px base:</p>
+    <ul class="demo-scale-list">
+      <li class="scale-0">18</li>
+      <li class="scale-1">23.9</li>
+      <li class="scale-2">31.9</li>
+      <li class="scale-3">42.6</li>
+      <li class="scale-4">56.8</li>
+    </ul>
+  </div>
+  <div class="demo-scale-large">
+    <p>You're seeing a <strong>1.5:1</strong> (perfect fifth) scale with an 18px base:</p>
+    <ul class="demo-scale-list">
+      <li class="scale-0">18</li>
+      <li class="scale-1">27</li>
+      <li class="scale-2">40.5</li>
+      <li class="scale-3">60.8</li>
+      <li class="scale-4">91.1</li>
+    </ul>
+  </div>
+  <p class="demo-explanation">This page's typographic scale shifts on screens <strong class="medium">wider than 550px</strong> and <strong class="large">wider than 800px</strong>. Resize your viewport (if you can) to see it in action.</p>
+</section>
+
+<section class="main" role="main">
 
   <section>
     <h2>What's the deal?</h2>
@@ -70,15 +103,24 @@ require 'responsive-modular-scale'</pre></code>
 
       <p>To set up your scales, you'll need a base pixel value and any number of breakpoint/ratio pairs. The generated CSS uses mobile-first breakpoints: by passing in a ratio without a pixel value, it's assumed to be for the smallest screens, and any ratios passed in with pixel values will generate <code>min-width</code> media queries.</p>
 
-      <p>The <code>set-scales()</code> mixin allows you to set your base pixel value(s), which don't change, and your ratios, which change at the breakpoints you specify. Here's a basic example: use a 1.333:1 (a perfect fourth) scale by default, and widen to a 1.5:1 (a perfect fifth) scale on medium-sized screens and up.</p>
+      <p>The <code>rms-set-scales()</code> mixin allows you to set your base pixel value(s), which don't change, and your ratios, which change at the breakpoints you specify. Here's a basic example: use a 1.333:1 (a perfect fourth) scale by default, and widen to a 1.5:1 (a perfect fifth) scale on medium-sized screens and up.</p>
 
-      <code class="code-block">@include set-scales(16px, fourth(), 768px fifth());</code>
+      <code class="code-block">@include rms-set-scales(16px, $fourth, 768px $fifth);</code>
 
       <p>If you're more into using two main breakpoints instead of one, you could slip an augmented fourth in the middle.</p>
 
-      <code class="code-block">@include set-scales(16px, fourth(), 640px augmented-fourth(), 1024px fifth());</code>
+      <code class="code-block">@include rms-set-scales(16px, $fourth, 640px $augmented-fourth, 1024px $fifth);</code>
 
-      <p>These examples use the <code>modular-scale</code> gem's predefined ratios, of which there are many. However, you can pass in any old ratio you want, in the form of an integer (1.5) or a division problem (3 / 2).</p>
+      <p>These examples use the <code>modular-scale</code> gem's predefined ratios, of which there are <a href="https://github.com/Team-Sass/modular-scale#ratios">many</a>. However, you can pass in any old ratio you want, in the form of an integer (1.5) or a division problem (3 / 2).</p>
+    </section>
+
+    <section>
+      <h3>Pixels or ems?</h3>
+
+      <p>Responsive Modular Scale outputs ems for font sizes and breakpoints by default, because em-based values are awesome, mostly for people who zoom their browser. If you'd rather use pixels, you can:</p>
+
+<code class="code-block">// You can call this before or after rms-set-scales()
+@include rms-use-pixels;</code>
     </section>
 
     <section>
@@ -88,7 +130,7 @@ require 'responsive-modular-scale'</pre></code>
 
       <p>Using a 16px base and two basic scales:</p>
 
-      <code class="code-block">@include set-scales(16px, fourth(), 768px fifth());</code>
+      <code class="code-block">@include rms-set-scales(16px, fourth(), 768px fifth());</code>
 
       <p>And setting your font size like this:</p>
 

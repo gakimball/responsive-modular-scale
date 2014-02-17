@@ -9,54 +9,63 @@
   }
 }
 
-$medium: 550px;
-$large: 800px;
+$base-font-size: 18px;
+$column-width: 366px;
+
+$default-color: #ff2776;
+ $medium-color: #e88b24;
+  $large-color: #2785ff;
+
+$medium: to-em(550px);
+ $large: to-em(800px);
 
 html {
   border-top: 6px solid #333;
 }
 body {
-  background: #eee;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  max-width: 900px;
-  margin: 0 auto;
+  background: #eee url('../img/bright_squares.png') repeat;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-size: $base-font-size;
   padding: 0 1em;
+  -webkit-font-smoothing: antialiased;
 }
 
-@include set-scales(16px 90px, major-third(), $medium fourth(), $large fifth());
+@include rms-set-scales($base-font-size, $major-third, $medium $fourth, $large $fifth);
+@include rms-set-base($base-font-size);
 
 h1, h2, h3, p, ul, ol, li, img {
   margin: 0 0 1rem 0;
 }
 
 h1 {
-  @include rms(9);
+  @include rms(5);
+  font-family: 'Cookie';
+  font-weight: normal;
 }
 h2 {
-  @include rms(5);
-  padding-bottom: 0.25em;
-  border-bottom: 2px solid #333;
-  margin-bottom: 1.5rem;
+  @include rms(2);
+  margin-bottom: 0.5em;
+  line-height: 1;
 }
 h3 {
-  @include rms(3);
+  @include rms(1);
 }
 
 p, li, code {
-  line-height: fourth();
+  line-height: $major-third;
 
   @include media($medium) {
-    line-height: augmented-fourth();
+    line-height: $fourth;
   }
   @include media($large) {
-    line-height: fifth();
+    line-height: $fifth;
   }
 }
 
 a {
   color: #a20800;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
 
   &:hover {
     text-decoration: underline;
@@ -67,72 +76,164 @@ pre {
   margin: 0;
 }
 code {
-  border: 1px solid #666;
-  background: #ddd;
+  border: 1px dotted #999;
+  background: rgba(#fff, 0.5);
 }
 .code-block {
   display: block;
   padding: 0.75em;
   margin-bottom: 1em;
+  background: rgba(#fff, 0.5);
 }
 
-.main > section {
-  margin-bottom: 2em;
+.divider {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  border-bottom: 5px dotted $default-color;
 }
 
 /*
   Page styles
 */
 
+.main {
+  max-width: 750px;
+  margin: 0 auto;
+
+  > section {
+    margin-bottom: 2em;
+  }
+}
+
 .header {
-  margin-bottom: 2em;
+  max-width: 1134px;
   padding: 1em 0;
-  border-bottom: 4px solid #333;
+  margin: 0 auto;
+
+  @include media($medium) {
+    padding: 2em 0;
+  }
+  @include media($large) {
+    padding: 2.5em 0;
+  }
 }
   .page-title {
-    line-height: 1.1;
+    line-height: 0.9;
     margin-bottom: 0;
   }
   .page-title-sub {
-    @include rms(4);
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
+    @include rms(2);
     font-weight: 100;
     color: #000;
+    line-height: 1;
+  }
+  .gem-install {
+    display: inline-block;
+    font-family: monospace;
+    @include rms(1);
+  }
+  .fork {
+    display: block;
+    margin-top: 1em;
+
+    &:hover {
+      border-bottom: 2px solid black;
+    }
+
+    @include media($medium) {
+      position: absolute;
+      margin-top: 0.25em;
+      top: 1em;
+      right: 1em;
+    }
   }
 
 .demo {
-  .explanation {
-    @include rms(2);
-    font-weight: 300;
+  border-bottom: 3px dotted $default-color;
+  padding: 1em 0;
+  margin: 1em auto;
+  max-width: 1134px;
+
+  @include media($medium) {
+    padding: 2em 0;
+    margin-bottom: 2em;
   }
 }
+  .demo-scale-small {
+    text-align: center;
 
-.fork-button {
-  $diameter: 4.5em;
-  @include rms(5);
-  @include rotateZ(15deg);
+    p {
+      @include rms(1);
+    }
+  }
+  .demo-scale-medium, .demo-scale-large {
+    @extend .demo-scale-small;
+    display: none;
 
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  width: $diameter;
-  height: $diameter;
-  
-  color: white;
-  background: black;
-  text-align: center;
-  line-height: $diameter;
-  border-radius: 1000px;
-  
-  display: none;
+    .demo-scale-list li {
+      display: inline-block;
+      padding: 0 1rem;
+    }
+  }
+    @include media($medium) {
+      .demo-scale-small  { display: none; }
+      .demo-scale-medium { display: block; }
+    }
+    @include media($large) {
+      .demo-scale-medium { display: none; }
+      .demo-scale-large  { display: block; }
+    }
+  .demo-scale-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 1em 0;
+    text-align: center;
 
-  &:hover {
-    text-decoration: none;
-    @include transform(scale(1.1) rotate(15deg));
+    .scale-0 { @include rms(0); }
+    .scale-1 { @include rms(1); }
+    .scale-2 { @include rms(2); }
+    .scale-3 { @include rms(3); }
+    .scale-4 { @include rms(4); }
+  }
+  .demo-explanation {
+    @include rms(1);
+    margin: 0;
+    font-weight: 300;
+  }
+  .medium {
+    color: $medium-color;
+  }
+  .large {
+    color: $large-color;
   }
 
-  @include media(660px) {
-    display: block;
+/*
+  Color scheme
+*/
+
+h1, h2, a, .gem-install {
+  color: $default-color;
+
+  @include media($medium) {
+    color: $medium-color;
   }
+  @include media($large) {
+    color: $large-color;
+  }
+}
+html, .demo, .divider {
+  border-color: $default-color;
+
+  @include media($medium) {
+    border-color: $medium-color;
+  }
+  @include media($large) {
+    border-color: $large-color;
+  }
+}
+strong {
+  .demo-scale-small &  { color: $default-color; }
+  .demo-scale-medium & { color: $medium-color; }
+  .demo-scale-large &  { color: $large-color; }
 }
