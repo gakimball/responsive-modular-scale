@@ -10,7 +10,7 @@ This is a mostly-breaking version as the helper functions were renamed to avoid 
 
 - Compatability with modular-scale 2.0.4
 - Helper functions renamed
-    - `set-scales()` is `rms-list-scales()`
+    - `set-scales()` is `rms-set-scales()`
     - `list-scales()` is `rms-list-scales()`
     - `use-pixels()` is `rms-use-pixels()`
     - `set-base()` is `rms-set-base()`
