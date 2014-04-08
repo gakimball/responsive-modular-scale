@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
   s.files = ["lib/responsive-modular-scale.rb", "readme.md", "license.md"]
   s.files += Dir.glob("stylesheets/**/*.*")
 
-  s.add_dependency("modular-scale", [">= 1.0.6"])
+  s.add_dependency("modular-scale", [">= 2.0.4"])
 end

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 (April 8, 2014)
+
+- Changed Gemfile to require Sass 3.2.x
+
 ## 0.2.0 (February 13, 2014)
 
 This is a mostly-breaking version as the helper functions were renamed to avoid any possible collision with other libraries.
