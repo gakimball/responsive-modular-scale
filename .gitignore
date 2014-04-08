@@ -1,4 +1,5 @@
 .DS_Store
+_assets
 .sass-cache
 test/stylesheets
 *.gem
