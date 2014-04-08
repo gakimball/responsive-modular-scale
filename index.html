@@ -14,46 +14,67 @@
 <body>
   
 <header class="header">
-  <h1 class="page-title">Responsive <br> Modular Scale</h1>
-  <p class="page-title-sub">Responsive typography made easy.</p>
-  <div class="gem-install"><b>$</b> gem install responsive-modular-scale</div>
-  <a href="https://github.com/gakimball/responsive-modular-scale"><img src="img/fork.svg" alt="Fork me on Github" class="fork"></a>
+  <div class="header__inner">
+    <h1 class="header__title">Responsive <br> Modular Scale</h1>
+    <p class="header__subtitle">Responsive typography made easy.</p>
+    <div class="header__install"><b>$</b> gem install responsive-modular-scale</div>
+    <a href="https://github.com/gakimball/responsive-modular-scale"><img src="img/fork.svg" alt="Fork me on Github" class="header__fork-link"></a>
+  </div>
+
+  <div class="header__ticks">
+    <div class="tick-0"></div>
+    <div class="tick-1"></div>
+    <div class="tick-2"></div>
+    <div class="tick-3"></div>
+    <div class="tick-4"></div>
+    <div class="tick-5"></div>
+    <div class="tick-6"></div>
+  </div>
+  <div class="header__ticks lower">
+    <div class="tick-0"></div>
+    <div class="tick-1"></div>
+    <div class="tick-2"></div>
+    <div class="tick-3"></div>
+    <div class="tick-4"></div>
+    <div class="tick-5"></div>
+    <div class="tick-6"></div>
+  </div>
 </header>
 
-<hr class="divider">
-
 <section class="demo">
-  <div class="demo-scale-small">
-    <p>You're seeing a <strong>1.25:1</strong> (major third) scale with an 18px base:</p>
-    <ul class="demo-scale-list">
-      <li class="scale-0">18</li>
-      <li class="scale-1">22.5</li>
-      <li class="scale-2">28.1</li>
-      <li class="scale-3">35.2</li>
-      <li class="scale-4">43.9</li>
-    </ul>
+  <div class="demo__inner">
+    <div class="demo__scale-small">
+      <p>You're seeing a <strong>1.25:1</strong> (major third) scale with an 18px base:</p>
+      <ul class="demo__scale-list">
+        <li class="scale-0">18</li>
+        <li class="scale-1">22.5</li>
+        <li class="scale-2">28.1</li>
+        <li class="scale-3">35.2</li>
+        <li class="scale-4">43.9</li>
+      </ul>
+    </div>
+    <div class="demo__scale-medium">
+      <p>You're seeing a <strong>1.33:1</strong> (perfect fourth) scale with an 18px base:</p>
+      <ul class="demo__scale-list">
+        <li class="scale-0">18</li>
+        <li class="scale-1">23.9</li>
+        <li class="scale-2">31.9</li>
+        <li class="scale-3">42.6</li>
+        <li class="scale-4">56.8</li>
+      </ul>
+    </div>
+    <div class="demo__scale-large">
+      <p>You're seeing a <strong>1.5:1</strong> (perfect fifth) scale with an 18px base:</p>
+      <ul class="demo__scale-list">
+        <li class="scale-0">18</li>
+        <li class="scale-1">27</li>
+        <li class="scale-2">40.5</li>
+        <li class="scale-3">60.8</li>
+        <li class="scale-4">91.1</li>
+      </ul>
+    </div>
+    <p class="demo__explanation">This page's typographic scale shifts on screens <strong class="medium">wider than 550px</strong> and <strong class="large">wider than 800px</strong>. Resize your viewport (if you can) to see it in action.</p>
   </div>
-  <div class="demo-scale-medium">
-    <p>You're seeing a <strong>1.33:1</strong> (perfect fourth) scale with an 18px base:</p>
-    <ul class="demo-scale-list">
-      <li class="scale-0">18</li>
-      <li class="scale-1">23.9</li>
-      <li class="scale-2">31.9</li>
-      <li class="scale-3">42.6</li>
-      <li class="scale-4">56.8</li>
-    </ul>
-  </div>
-  <div class="demo-scale-large">
-    <p>You're seeing a <strong>1.5:1</strong> (perfect fifth) scale with an 18px base:</p>
-    <ul class="demo-scale-list">
-      <li class="scale-0">18</li>
-      <li class="scale-1">27</li>
-      <li class="scale-2">40.5</li>
-      <li class="scale-3">60.8</li>
-      <li class="scale-4">91.1</li>
-    </ul>
-  </div>
-  <p class="demo-explanation">This page's typographic scale shifts on screens <strong class="medium">wider than 550px</strong> and <strong class="large">wider than 800px</strong>. Resize your viewport (if you can) to see it in action.</p>
 </section>
 
 <section class="main" role="main">
@@ -120,8 +141,8 @@ require 'responsive-modular-scale'</pre></code>
 
       <p>Responsive Modular Scale outputs ems for font sizes and breakpoints by default, because em-based values are awesome, mostly for people who zoom their browser. If you'd rather use pixels, you can:</p>
 
-<code class="code-block">// You can call this before or after rms-set-scales()
-@include rms-use-pixels;</code>
+<code class="code-block"><pre>// You can call this before or after rms-set-scales()
+@include rms-use-pixels;</pre></code>
     </section>
 
     <section>

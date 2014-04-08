@@ -19,14 +19,11 @@ $default-color: #ff2776;
 $medium: to-em(550px);
  $large: to-em(800px);
 
-html {
-  border-top: 6px solid #333;
-}
 body {
   background: #eee url('../img/bright_squares.png') repeat;
   font-family: 'Open Sans', Helvetica, sans-serif;
   font-size: $base-font-size;
-  padding: 0 1em;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -100,6 +97,7 @@ code {
 .main {
   max-width: 750px;
   margin: 0 auto;
+  padding: 1em;
 
   > section {
     margin-bottom: 2em;
@@ -107,38 +105,53 @@ code {
 }
 
 .header {
-  max-width: 1134px;
-  padding: 1em 0;
-  margin: 0 auto;
+  $background-opacity: 0.6;
+  background-color: rgba($default-color, $background-opacity);
+  text-align: center;
+  position: relative;
 
   @include media($medium) {
     padding: 2em 0;
+    background-color: rgba($medium-color, $background-opacity);
   }
   @include media($large) {
     padding: 2.5em 0;
+    background-color: rgba($large-color, $background-opacity);
   }
 }
-  .page-title {
+  .header__inner {
+    max-width: 1134px;
+    margin: 0 auto;
+    padding: 1em;
+  }
+  .header__title {
     line-height: 0.9;
     margin-bottom: 0;
+    color: #fff;
+
+    @include media($medium) {
+      margin-top: -0.1em;
+    }
   }
-  .page-title-sub {
+  .header__subtitle {
     @include rms(2);
     font-weight: 100;
-    color: #000;
     line-height: 1;
+    color: #fff
   }
-  .gem-install {
+  .header__install {
     display: inline-block;
     font-family: monospace;
     @include rms(1);
   }
-  .fork {
+  .header__fork-link {
+    height: 30px;
     display: block;
-    margin-top: 1em;
+    margin: 1em auto 0 auto;
+    border-bottom: 2px solid transparent;
 
     &:hover {
-      border-bottom: 2px solid black;
+      border-color: black;
     }
 
     @include media($medium) {
@@ -147,44 +160,87 @@ code {
       top: 1em;
       right: 1em;
     }
+    @include media($large) {
+      height: auto;
+    }
+  }
+  .header__ticks {
+    height: 10px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &.lower {
+      top: auto;
+      bottom: 0;
+    }
+
+    > div {
+      position: absolute;
+      width: 5px;
+      height: 10px;
+      background: #ddd;
+      bottom: 0;
+    }
+    .tick-0 { left: 0; }
+    .tick-1 { left: 3.2%; }
+    .tick-2 { left: 6.4%; }
+    .tick-3 { left: 12.9%; }
+    .tick-4 { left: 25.8%; }
+    .tick-5 { left: 51.6%; }
+    .tick-6 { left: 100%; margin-left: -5px; }
+
+    @include media($medium) {
+      height: 20px;
+      > div { height: 20px; }
+    }
+    @include media($large) {
+      height: 30px;
+      > div { height: 30px; }
+    }
   }
 
 .demo {
-  border-bottom: 3px dotted $default-color;
+  border-bottom: 4px dotted $default-color;
+  margin: 1em;
   padding: 1em 0;
-  margin: 1em auto;
-  max-width: 1134px;
 
   @include media($medium) {
     padding: 2em 0;
     margin-bottom: 2em;
   }
 }
-  .demo-scale-small {
+  .demo__inner {
+    max-width: 1134px;
+    margin: 0 auto;
+  }
+  .demo__scale-small {
     text-align: center;
 
     p {
       @include rms(1);
     }
   }
-  .demo-scale-medium, .demo-scale-large {
-    @extend .demo-scale-small;
+  .demo__scale-medium, .demo__scale-large {
+    @extend .demo__scale-small;
     display: none;
 
-    .demo-scale-list li {
+    .demo__scale-list li {
       display: inline-block;
       padding: 0 1rem;
     }
   }
     @include media($medium) {
-      .demo-scale-small  { display: none; }
-      .demo-scale-medium { display: block; }
+      .demo__scale-small  { display: none; }
+      .demo__scale-medium { display: block; }
     }
     @include media($large) {
-      .demo-scale-medium { display: none; }
-      .demo-scale-large  { display: block; }
+      .demo__scale-medium { display: none; }
+      .demo__scale-large  { display: block; }
     }
-  .demo-scale-list {
+  .demo__scale-list {
     list-style-type: none;
     padding: 0;
     margin: 1em 0;
@@ -196,7 +252,7 @@ code {
     .scale-3 { @include rms(3); }
     .scale-4 { @include rms(4); }
   }
-  .demo-explanation {
+  .demo__explanation {
     @include rms(1);
     margin: 0;
     font-weight: 300;
@@ -212,7 +268,7 @@ code {
   Color scheme
 */
 
-h1, h2, a, .gem-install {
+h2, a, {
   color: $default-color;
 
   @include media($medium) {
