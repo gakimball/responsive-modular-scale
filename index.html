@@ -137,6 +137,14 @@ require 'responsive-modular-scale'</pre></code>
     </section>
 
     <section>
+      <h3>Changing the base</h3>
+
+      <p>If you change the base font size of your page, you'll need to let Responsive Modular Scale know, so it can internally calculate em values properly.</p>
+
+<code class="code-block"><pre>@include rms-set-base(18px);</pre></code>
+    </section>
+
+    <section>
       <h3>Pixels or ems?</h3>
 
       <p>Responsive Modular Scale outputs ems for font sizes and breakpoints by default, because em-based values are awesome, mostly for people who zoom their browser. If you'd rather use pixels, you can:</p>
@@ -146,13 +154,26 @@ require 'responsive-modular-scale'</pre></code>
     </section>
 
     <section>
+      <h3>Debugging</h3>
+
+      <p>After setting your scales, you can output the values of the scales at each breakpoint to the console by writing <code>@include rms-list-scales;</code> in your stylesheet. The output looks like this:</p>
+
+<code class="code-block"><pre>DEBUG: Default --
+DEBUG: 16px 21.33333px 28.44444px 37.92593px 50.5679px 67.42387px
+DEBUG: Min-width: 640px --
+DEBUG: 16px 22.62736px 31.99984px 45.25449px 63.99936px 90.50853px
+DEBUG: Min-width: 1024px --
+DEBUG: 16px 24px 36px 54px 81px 121.5px</pre></code>
+    </section>
+
+    <section>
       <h3>Setting the type</h3>
 
       <p>Setting a size works the same as it does with the standard modular scale gem: 0 is your base value, positive numbers move up the scale, and negative numbers move down. The <code>rms()</code> mixin will add one <code>font-size</code> property at each breakpoint you specified earlier.</p>
 
       <p>Using a 16px base and two basic scales:</p>
 
-      <code class="code-block">@include rms-set-scales(16px, fourth(), 768px fifth());</code>
+      <code class="code-block">@include rms-set-scales(16px, $fourth), 768px $fifth);</code>
 
       <p>And setting your font size like this:</p>
 
@@ -165,7 +186,7 @@ require 'responsive-modular-scale'</pre></code>
       <code class="code-block"><pre>h1 {
   font-size: 50px; // Default value using the smallest scale
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48em) {
   h1 {
     font-size: 81px; // Larger value using a widened scale
   }
