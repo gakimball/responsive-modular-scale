@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 (October 23, 2015)
+
+- Changed Gemfile to require Sass 3.4.x and Compass 1.0.x
+
 ## 0.2.1 (April 8, 2014)
 
 - Changed Gemfile to require Sass 3.2.x
