@@ -15,6 +15,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  compass (~> 0.12)
+  compass (~> 1.0)
   modular-scale (~> 2.0.4)
-  sass (~> 3.2.14)
+  sass (~> 3.4)

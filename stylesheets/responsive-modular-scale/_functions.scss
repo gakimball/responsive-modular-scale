@@ -23,16 +23,16 @@ $rms-usepixels: false;
     // If more than one argument was given
     @if length($args) > 1 {
       // Remove the default breakpoints and intervals
-      $rms-intervals: ();
+      $rms-intervals: () !global;
 
       @for $i from 2 through length($args) {
         // If a list item only has one value, assume it's an interval and set the breakpoint to 0px
         @if length(nth($args, $i)) == 1 {
-          $rms-intervals: append($rms-intervals, 0px nth($args, $i));
+          $rms-intervals: append($rms-intervals, 0px nth($args, $i)) !global;
         }
         // Otherwise copy the list as-is
         @else {
-          $rms-intervals: append($rms-intervals, nth($args, $i));
+          $rms-intervals: append($rms-intervals, nth($args, $i)) !global;
         }
       }
     }
