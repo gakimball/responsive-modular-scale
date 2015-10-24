@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = "Responsive enhancements for the Sass modular scale."
   s.summary     = "Responsive enhancements for the Sass modular scale."
   s.authors     = ["Geoff Kimball"]
-  s.email       = 'gakimball@bsu.edu'
+  s.email       = 'gakon5@gmail.com'
   s.homepage    =
     'http://github.com/gakimball/responsive-modular-scale'
   s.license     = 'MIT'
